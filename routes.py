@@ -47,9 +47,11 @@ def register():
         if existing_user:
             flash('Username already exists. Please choose a different username.', 'danger')
         else:
-                new_user = User(username=form.username.data, password=form.password.data)
-                new_user.create()
-                return redirect('/login')
+            new_user = User(username=form.username.data, password=form.password.data)
+            db.session.add(new_user)  # Add the new user to the session
+            db.session.commit()       # Commit the session to save changes
+            flash('Registration successful. Please log in.', 'success')
+            return redirect('/login')
 
     return render_template('registration.html', form=form)
 

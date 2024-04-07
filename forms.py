@@ -29,7 +29,7 @@ class RegisterForm(FlaskForm):
     gender = RadioField("Gender", choices=[('male', 'Male'), ('female', 'Female')], validators=[InputRequired()])
     birthday = DateField('Date of Birth', format='%Y-%m-%d', validators=[InputRequired()])
     country = SelectField('Country', choices=[('georgia', 'Georgia'), ('usa', 'USA')], validators=[InputRequired()])
-    email = StringField('Email', validators=[InputRequired(), Email()])
+    email = StringField('Email', validators=[InputRequired()])
     submitt = SubmitField('Register')
 
 

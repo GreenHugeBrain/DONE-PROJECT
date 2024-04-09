@@ -7,7 +7,8 @@
     <link rel="stylesheet" href="/static/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Georgian&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Icons+Round:wght@400;700&display=swap">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Georgian&display=swap" rel="stylesheet">
     <title>Market of Game Accounts</title>
 </head>
 
@@ -27,27 +28,26 @@
             <div class="header-user-dropdown">
                 <button class="header-logineduser">{{ current_user.username }}</button>
                 <ul class="header-options">
-                    <li><a class="header-logout" href="{{ url_for('logout') }}">Logout</a></li>
+                    <a class="header-logout" href="{{ url_for('logout') }}"><li>Logout</li></a>
                 </ul>
             </div>
             {% else %}
             <button class="header-register"><a href="{{ url_for('register') }}">REGISTER</a></button>
-            <button class="header-login"><a href="{{ url_for('login') }}">Login</a></button>
+            <button class="header-login"><a href="{{ url_for('login') }}">LOGIN</a></button>
             {% endif %}
         </div>
     </header>
 
-<main>
-    {% block containers %}
-    {% endblock %}
-    <form method="post">
-        {% block comments %}
-        {% endblock %}
-    </form>
-</main>
-
-
-    
+    <main>
+        <section class="container">
+            {% block containers %}
+            {% endblock %}
+        </section>
+        <form method="post">
+            {% block comments %}
+            {% endblock %}
+        </form>
+    </main>
 
     <footer>
         <div class="footer-content">
@@ -75,10 +75,7 @@
                 <a href="https://www.tbcbank.ge/web/ka" target="_blank">TBC</a>
                 <a href="https://www.instagram.com/tbc_for_youth/" target="_blank">Instagram</a>
             </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2023 Your Website. All rights reserved.</p>
-        </div>
+        </div>  
     </footer>
 
 </body>

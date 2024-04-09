@@ -7,6 +7,7 @@ from forms import AddCommentForm, AddProduct, EditProductForm, RegisterForm, Log
 from werkzeug.utils import secure_filename
 from models import Comment, Product, User
 from flask_login import login_required, login_user, logout_user, current_user
+from PIL import Image
 
 @app.route('/', methods=['POST', 'GET'])
 def home():
@@ -81,11 +82,19 @@ def admindashboard():
         
         products = Product.query.all()
         if form.validate_on_submit():
-            new_product = Product(name=form.name.data, img=form.img.data.filename)
+            new_product = Product(name=form.name.data)
+            
+            # Convert uploaded image to WebP format
+            if form.img.data:
+                image = Image.open(form.img.data)
+                image = image.convert("RGB")  # Convert image to RGB mode for WebP conversion
+                filename = secure_filename(form.img.data.filename)
+                webp_filename = f"{filename.split('.')[0]}.webp"
+                webp_file_dir = join(app.root_path, "static", webp_filename)
+                image.save(webp_file_dir, "WEBP")
+                new_product.img = webp_filename
+                
             new_product.create()
-
-            file_dir = path.join(app.root_path, "static", form.img.data.filename)
-            form.img.data.save(file_dir)
             
             return redirect("/admindashboard")
             

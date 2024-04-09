@@ -10,20 +10,29 @@
 
 <body>
 
-    <nav>
-        <a class="navbar-brand" href="#">Admin Dashboard</a>
-        <button class="navbar-toggler" type="button">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="navbar-nav ml-auto">
-            <div class="nav-item">
-                <a class="nav-link" href="{{ url_for('product') }}">Home</a>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('home') }}">HOME</a></li>
+                <li><a href="#">ABOUT US</a></li>
+                <li><a href="#">CONTACT US</a></li>
+            </ul>
+        </nav>
+
+        <div class="header-buttons">
+            {% if current_user.is_authenticated %}
+            <div class="header-user-dropdown">
+                <button class="header-logineduser">{{ current_user.username }}</button>
+                <ul class="header-options">
+                    <li><a class="header-logout" href="{{ url_for('logout') }}">Logout</a></li>
+                </ul>
             </div>
-            <div class="nav-item">
-                <a class="nav-link" href="{{ url_for('logout') }}">Logout</a>
-            </div>
+            {% else %}
+            <button class="header-register"><a href="{{ url_for('register') }}">REGISTER</a></button>
+            <button class="header-login"><a href="{{ url_for('login') }}">LOGIN</a></button>
+            {% endif %}
         </div>
-    </nav>
+    </header>
 
 
 
@@ -36,23 +45,54 @@
 
             <div class="product-container">
                 {% for product in products %}
-                    <div class="product-card">
-                        <span class="name">{{ product.name }}</span>
-                        <img src="{{ url_for('static', filename=product.img) }}" alt="Product Image">
-                        <a href="{{ url_for('edit_product', index=product.id) }}">Edit Product</a>
-            
-                        <form method="post" action="{{ url_for('remove_product', index=product.id) }}">
-                            <input type="hidden" name="_method" value="DELETE">
-                            <button type="submit">Remove Product</button>
-                        </form>
-                    </div>
+                <div class="product-card">
+                    <span class="name">{{ product.name }}</span>
+                    <img src="{{ url_for('static', filename=product.img) }}" alt="Product Image">
+                    <a href="{{ url_for('edit_product', index=product.id) }}">Edit Product</a>
+
+                    <form method="post" action="{{ url_for('remove_product', index=product.id) }}">
+                        <input type="hidden" name="_method" value="DELETE">
+                        <button type="submit">Remove Product</button>
+                    </form>
+                </div>
                 {% endfor %}
             </div>
-            
-            
-            
+
+
+
         </form>
     </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <a href="https://www.tbcbank.ge/web/ka" target="_blank"><img src="/static/tbc.png" alt="Your Logo"></a>
+                <p>TBC</p>
+            </div>
+            <div class="footer-links">
+                <ul>
+                    <li><a href="{{ url_for('home') }}">Home</a></li>
+                    <li><a href="{{ url_for('product') }}">Products</a></li>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-contact">
+                <h4>Contact Us</h4>
+                <p>Tbilisi</p>
+                <p>Email: marketofgames@gmail.com</p>
+                <p>Phone: (+995) 564 434 464</p>
+            </div>
+            <div class="footer-social">
+                <h4>Follow Us</h4>
+                <a href="https://www.facebook.com/tbcforyouth" target="_blank">Facebook</a>
+                <a href="https://www.tbcbank.ge/web/ka" target="_blank">TBC</a>
+                <a href="https://www.instagram.com/tbc_for_youth/" target="_blank">Instagram</a>
+            </div>
+        </div>
+    
+    </footer>
+
 
 </body>
 

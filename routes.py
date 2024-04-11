@@ -63,7 +63,7 @@ def login():
     if form.validate_on_submit():
         user = User.query.filter(User.username == form.username.data).first()
         login_user(user)
-        return redirect('/')
+        return redirect('/')    
     return render_template("login.html", form=form)
 
 
@@ -84,10 +84,9 @@ def admindashboard():
         if form.validate_on_submit():
             new_product = Product(name=form.name.data)
             
-            # Convert uploaded image to WebP format
             if form.img.data:
                 image = Image.open(form.img.data)
-                image = image.convert("RGB")  # Convert image to RGB mode for WebP conversion
+                image = image.convert("RGB")  
                 filename = secure_filename(form.img.data.filename)
                 webp_filename = f"{filename.split('.')[0]}.webp"
                 webp_file_dir = join(app.root_path, "static", webp_filename)

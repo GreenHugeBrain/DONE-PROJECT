@@ -7,19 +7,22 @@
     <link rel="stylesheet" href="/static/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Icons+Round:wght@400;700&display=swap">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Icons+Round:wght@400;700&display=swap">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Georgian&display=swap" rel="stylesheet">
     <title>Market of Game Accounts</title>
 </head>
 
 <body>
-
+    <div class="bg-images">
+        <img src="/static/wp4251235.jpg" alt="cover">
+    </div>
     <header>
         <nav>
             <ul>
                 <li><a href="{{ url_for('home') }}">HOME</a></li>
-                <li><a href="#">ABOUT US</a></li>
-                <li><a href="#">CONTACT US</a></li>
+                <li><a href="#about">ABOUT US</a></li>
+                <li><a href="#Contact">CONTACT US</a></li>
             </ul>
         </nav>
 
@@ -28,7 +31,9 @@
             <div class="header-user-dropdown">
                 <button class="header-logineduser">{{ current_user.username }}</button>
                 <ul class="header-options">
-                    <a class="header-logout" href="{{ url_for('logout') }}"><li>Logout</li></a>
+                    <a class="header-logout" href="{{ url_for('logout') }}">
+                        <li>Logout</li>
+                    </a>
                 </ul>
             </div>
             {% else %}
@@ -50,7 +55,7 @@
     </main>
 
     <footer>
-        <div class="footer-content">
+        <section id="Contact" class="footer-content">
             <div class="footer-logo">
                 <a href="https://www.tbcbank.ge/web/ka" target="_blank"><img src="/static/tbc.png" alt="Your Logo"></a>
                 <p>TBC</p>
@@ -75,8 +80,11 @@
                 <a href="https://www.tbcbank.ge/web/ka" target="_blank">TBC</a>
                 <a href="https://www.instagram.com/tbc_for_youth/" target="_blank">Instagram</a>
             </div>
-        </div>  
+        </section>
     </footer>
 
+
+
 </body>
+
 </html>

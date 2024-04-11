@@ -10,10 +10,8 @@
 
 body {
     font-family: 'Noto Sans Georgian', sans-serif;
-    background-image: url(/static/wp4251235.jpg);
-    background-position: center;
-    background-size: cover;
     overflow-x: hidden;
+    height: 2900px;
 }
 
 .opacity {
@@ -35,7 +33,7 @@ header {
     justify-content: space-between;
     align-items: center;
     padding: 20px;
-    background-color: rgb(20, 20, 43);
+    background-color: rgb(20, 20, 43, 0.5);
 }
 
 nav ul {
@@ -58,6 +56,24 @@ nav a {
     text-decoration: none;
     transition: color 0.3s ease;
 }
+
+.bg-images {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.bg-images img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
 
 nav a:hover {
     color: tomato;
@@ -83,8 +99,16 @@ main{
     display: grid;
     justify-content: center;
     align-items: center;
-    height: 50vh;
+    height: 100vh;
     width: 100vw;
+
+}
+
+.image{
+        background-position: center;
+    background-position: fixed;
+    background-size: cover;
+    
 }
 
 .special-things,
@@ -112,8 +136,23 @@ footer{
     display: flex;
     justify-content: center;
     align-items:end;
-    height: 100vh;
+    height: 335vh;
     width: 100vw;
+}
+
+.about{
+    margin-top: 150px;
+    display: grid;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    height: 1000px;
+    color: white;
+}
+
+.about p {
+    width: 500px;
+    font-weight: bolder;
 }
 
 .footer-content{
@@ -196,4 +235,32 @@ footer{
 
 .comment-entry .comment {
     margin-left: 10px;
+}
+
+@media screen and (max-width: 768px){
+    *{
+        pointer-events: none;
+    }
+    footer{
+        height: 357vh;
+    }
+    .opacity{
+        width: 100%;
+        height: 100%;
+    }
+}
+
+@media screen and (max-width: 426px) {
+    header{
+        width: fit-content;
+    }
+    main{
+        width: 142vw;
+    }
+    footer{
+        width: 147vw;
+    }
+    .footer-content{
+        width: 149vw;
+    }
 }
